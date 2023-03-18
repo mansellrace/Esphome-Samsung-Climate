@@ -12,7 +12,7 @@ Il progetto utilizza un wemos D1 mini per il collegamento ad Home assistant, il 
 La nuova scheda si collega alla scheda Samsung in soli tre punti, prelevando alimentazione e collegandosi all'uscita del ricevitore IR.
 In questo modo viene intercettata la sequenza di dati captata dal telecomando per sincronizzare lo stato su home assistant, ed iniettando sullo stesso pin i comandi generati dal wemos si può comandare il climatizzatore.
 
-![Schema elettrico](https://github.com/mansellrace/Esphome-Samsung-Climate/blob/main/img/schema%20samsung%20ir.png)
+![Schema elettrico](https://github.com/mansellrace/Esphome-Samsung-Climate/blob/main/img/schema_samsung_ir.png)
 
 Poichè il wemos lavora a 3.3v e il ricevitore IR lavora a 5v ho interposto un level shifter.
 
