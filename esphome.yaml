@@ -1,0 +1,82 @@
+esphome:
+  name: clima-camera
+  includes: 
+    - irsamsung.h
+  libraries:
+    - IRremoteESP8266
+  platformio_options:
+    build_flags:
+      - -D_IR_ENABLE_DEFAULT_=false
+      - -DSEND_SAMSUNG_AC=true
+      - -DDECODE_SAMSUNG_AC=true
+      - -DDECODE_AC=true
+      - -DDECODE_HASH
+
+esp8266:
+  board: d1_mini
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key:      # INSERISCI QUI LA TUA API KEY
+
+ota:
+  password: # INSERISCI QUI LA TUA OTA PASSWORD
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+captive_portal:
+
+climate:
+  - platform: custom
+    lambda: |-
+       auto samsungac = new SamsungAC();
+       samsungac->set_sensor(id(temp_attuale));
+       samsungac->set_fast(id(mod_fast));
+       App.register_component(samsungac);
+       return {samsungac};
+    climates:
+      - name: "Clima stanza da letto"
+        id: clima
+        on_state:
+          - logger.log:
+              format: "Modalità %i"
+              args: [ 'id(clima).mode' ]
+
+sensor:
+  - platform: homeassistant
+    name: "Temperatura"
+    entity_id: sensor.stanza_da_letto_temperatura
+    id: temp_attuale
+  - platform: uptime
+    name: Clima stanza da letto Uptime
+
+switch:
+  - platform: template
+    name: "Clima stanza da letto Modalità Fast"
+    id: mod_fast
+    icon: 'mdi:turbine'
+    turn_on_action:
+      then:
+        - if:
+            condition:
+              lambda: 'return (id(clima).mode == 2 || id(clima).mode == 3) ;'
+            then:
+              - switch.template.publish:
+                  id: mod_fast
+                  state: !lambda 'return true;'
+              - script.execute: reset_fast
+
+script:
+  - id: reset_fast
+    mode: restart
+    then:
+      - delay: 30min
+      - switch.template.publish:
+          id: mod_fast
+          state: !lambda 'return false;'
