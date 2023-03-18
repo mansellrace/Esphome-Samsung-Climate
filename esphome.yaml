@@ -53,8 +53,6 @@ sensor:
     name: "Temperatura"
     entity_id: sensor.stanza_da_letto_temperatura
     id: temp_attuale
-  - platform: uptime
-    name: Clima stanza da letto Uptime
 
 switch:
   - platform: template
