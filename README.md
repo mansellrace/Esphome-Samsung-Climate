@@ -29,7 +29,7 @@ L'integrazione gestisce correttamente la modalità Fast, Quiet, l'oscillazione, 
 
 Visto che l'entità di tipo climate viene mostrata a schermo con temperatura attuale e temperatura target, la temperatura attuale della stanza viene passata al climate prelevandola da un sensore ambientale, per evitare di visualizzare 0° a display.
 
-L'integrazione è basata sulla libreria [IRremoteESP8266](https://github.com/crankyoldgit/IRremoteESP8266), utilizzando il codice di altri progetti simili trovati sul web, riadattandoli al mio caso specifico.
+L'integrazione è basata sulla libreria [IRremoteESP8266](https://github.com/crankyoldgit/IRremoteESP8266), ho utilizzato il codice di altri progetti simili trovati sul web, riadattandoli al mio caso specifico.
 
 Il file [irsamsung.h](https://github.com/mansellrace/Esphome-Samsung-Climate/blob/main/irsamsung.h) va inserito all'interno della cartella di home assistant config/esphome/
 
