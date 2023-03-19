@@ -16,11 +16,18 @@ In questo modo viene intercettata la sequenza di dati captata dal telecomando pe
 
 Poichè il wemos lavora a 3.3v e il ricevitore IR lavora a 5v ho interposto un level shifter.
 
+Il tranistor si è reso necessario per invertire la polarità del pin D7 in modo hardware, per evitare che il pin D7 portato a 0 in fase di aggiornamento, blocco, debug, potesse bloccare il ricevitore IR e impedire il funzionamento nativo del telecomando.
+Io ho utiilizzato un transistor BC550 perchè ne avevo il cassetto pieno, ma si può usare un qualsiasi npn generico, come ad esempio BC547, 2n222, etc.
+
 Il pin D6 è impostato come ricezione dati, il pin D7 come trasmissione.
 
 ![Scheda wemos](https://github.com/mansellrace/Esphome-Samsung-Climate/blob/main/img/scheda_wemos.jpg)
 ![Scheda samsung fronte](https://github.com/mansellrace/Esphome-Samsung-Climate/blob/main/img/scheda_samsung_fronte.jpg)
 ![Scheda samsung retro](https://github.com/mansellrace/Esphome-Samsung-Climate/blob/main/img/scheda_samsung_retro.jpg)
+
+### Versione 2:
+Si può utilizzare un partitore resistivo al posto del level shifter.
+![Schema_2](https://github.com/mansellrace/Esphome-Samsung-Climate/blob/main/img/schema_samsung_ir_2.png)
 
 ## Software
 L'integrazione gestisce correttamente la modalità Fast, Quiet, l'oscillazione, le 4 velocità standard, le 5 modalità opeative (auto / caldo / freddo / deumidificazione / solo ventilazione). Quando si imposta il climatizzatore da telecomando, l'entità su home assistant viene aggiornata correttamente.
