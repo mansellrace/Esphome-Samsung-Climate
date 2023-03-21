@@ -42,4 +42,4 @@ Il file [irsamsung.h](https://github.com/mansellrace/Esphome-Samsung-Climate/blo
 
 Successivamente aggiungi il nuovo wemos a esphome, e una volta che viene creata la configurazione base inserisci all'interno del file di configurazione il contenuto del file [esphome.yaml](https://github.com/mansellrace/Esphome-Samsung-Climate/blob/main/esphome.yaml). 
 Della tua configurazione iniziale mantieni solo la OTA password e la API KEY. 
-Sostituisci il nome della board nel secondo rigo, il nome delle entità switch, climate, il nome del sensore di temperatura.
+Sostituisci il nome della board nel secondo rigo, imposta il friendly_name, il nome del tuo sensore di temperatura.
